@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Solfetish!</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Goblin+One&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+
+
+
+  <div class="container">
+    <h1 class="appname" translate="no">Solfetish!</h1>
+    <div class="playbtn">
+      <input type="submit" class="btn-hover" id="start" value="▶">
+      <input type="submit" class="btn-hover" id="stop" value="ll">
+    </div>
+
+
+    <div class="answer">
+      <form>
+        <p class="answerarea">The freq is</p>
+        <p class="answerarea"><textarea id="write" name="txt1"></textarea></p>
+        <input class="btn-hover answerbtn" type="button" value="ANSWER" onclick="g_start(txt1.value);">
+      </form>
+    </div>
+
+    <div id="keyboard" translate="no">
+      <div class="tenkey">7</div>
+      <div class="tenkey">8</div>
+      <div class="tenkey">9</div>
+      <div class="tenkey">4</div>
+      <div class="tenkey">5</div>
+      <div class="tenkey">6</div>
+      <div class="tenkey">1</div>
+      <div class="tenkey">2</div>
+      <div class="tenkey">3</div>
+      <div class="tenkey zero">0</div>
+      <div class="tenkey delete lastitem">AC</div>
+    </div>
+
+
+
+
+
+    <div class="usage">
+      <p>
+        Direction:<br>
+        1.Push the "Play" Button and the synth sounds random frequency between 100 to 2500Hz,in 100Hz increments.<br>
+        2.Guess the freq,type and answer it.<br>
+      </p>
+    </div>
+
+    <div class="reload">
+      <input type="submit" class="btn-hover" value="Retry" id="retry" onclick="location.reload();">
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+  <script type="text/javascript">
+    let playcount = 0;
+
+    const startbtn = document.getElementById('start');
+    const stopbtn = document.getElementById('stop');
+    stopbtn.disabled = true;
+
+    let note = Math.floor(Math.random() * 25 + 1);
+    let answernote = note * 100;
+
+
+    window.onload = function () {
+
+
+
+      let ctx = new AudioContext();
+      let osc = new OscillatorNode(ctx)
+
+      function startOsc(bool) {
+        if (bool === undefined) bool = true;
+
+        if (bool === true) {
+          osc = ctx.createOscillator();
+          osc.frequency.value = answernote;
+
+          osc.start(ctx.currentTime);
+          osc.connect(ctx.destination);
+
+        } else {
+          osc.stop(ctx.currentTime);
+          osc.disconnect(ctx.destination);
+          osc = null;
+        }
+      }
+
+      $(document).ready(function () {
+        $("#start").click(function () {
+          startOsc();
+          startbtn.disabled = true;
+          stopbtn.disabled = false;
+          playcount = 1;
+        });
+        $("#stop").click(function () {
+          startOsc(false);
+          startbtn.disabled = false;
+          stopbtn.disabled = true;
+        });
+      });
+
+    }
+
+
+
+
+
+
+
+    function g_start(my_val) {
+
+      if (playcount == 1) {
+        if (my_val == answernote) {
+          alert("That's right, " + answernote + "Hz");
+        } else {
+          alert("Fault, " + answernote + "Hz");
+        }
+      } else {
+      }
+    }
+
+
+
+
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="tenkey.js"></script>
+</body>
+
+</html>

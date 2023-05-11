@@ -1,0 +1,121 @@
+*{
+    box-sizing: border-box;
+}
+
+textarea {
+    resize:none;
+}
+
+
+body {
+    font-family: Segoe UI, SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    background: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 760px) {
+    .container {
+        width: 500px;
+    }
+}
+
+.appname {
+    text-align: center;
+    font-size: 36px;
+    padding-top: 20px;
+    font-family: 'Goblin One';
+}
+
+.playbtn {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.answer {
+text-align: center;
+}
+
+.answer p {
+    padding-top: 10px;
+}
+
+
+
+
+
+
+#write {
+    width: 200px;
+    height: 100px;
+    font-size: 50px;
+    text-align: end;
+}
+
+
+.btn-hover {
+    width: 100px;
+    font-size: 19px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 10px 10px 10px 0;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+.answerbtn {
+    font-size: 14px;
+}
+
+#keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.tenkey {
+    cursor: pointer;
+    background-color: rgb(243, 243, 243);
+    border-radius: 50px;
+    font-size: 30pt;
+    width: 32%;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.zero {
+    width: 66%;
+}
+
+#keyboard::after {
+    content: "";
+    display: block;
+    width: 32%;
+    /* .boxに指定したwidthと同じ幅を指定する */
+    height: 0;
+}
+
+.usage {
+    line-height: 1.5;
+}
+
+.reload {
+    text-align: center;
+}
